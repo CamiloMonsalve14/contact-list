@@ -3,8 +3,8 @@ let listaContactos = [
         id: 1,
         nombres: "Camilo",
         apellidos: "Monsalve",
-        teléfono: 3178283742,
-        ubicaciones: { ciudad: "San Pedro de Urabá", dirección: "calle 50 #46-10",}
+        teléfono: 31732322742,
+        ubicaciones: { ciudad: "bogota", dirección: "calle 50 #46-10",}
 },
 
     {
@@ -12,7 +12,7 @@ let listaContactos = [
         nombres: "Alanna",
         apellidos: "Delgado",
         teléfono: 3178283245,
-        ubicaciones: { ciudad: "San Pedro de Urabá", dirección: "calle 50 #47-15",}
+        ubicaciones: { ciudad: "medellin", dirección: "calle 50 #47-15",}
 },
 
 {
@@ -26,17 +26,31 @@ let listaContactos = [
 
 function agregarContacto(nuevoContacto){
 listaContactos.push(nuevoContacto);
-// return listaContactos;
 }
 
 function borrarContacto (borrarContacto){
-let nuevalista = listaContactos.filter((contacto) => contacto.id !== borrarContacto);
+let nuevalista = listaContactos.filter((contacto) => contacto.ubicaciones.ciudad !== borrarContacto);
 listaContactos = nuevalista;
 }
 
 function imprimirContacto () {
     console.log(listaContactos);
 }
+
+
+function actualizarContacto(id, nuevoContacto) {
+    const index = listaContactos.findIndex(contacto => contacto.id === id);
+
+    if (index !== -1) {
+    listaContactos[index] = { ...listaContactos[index], ...nuevoContacto };
+    console.log("Contacto actualizado:", listaContactos[index]);
+    } else {
+    console.log("Contacto no encontrado con el ID:", id);
+    }
+}
+
+actualizarContacto(5, { apellidos: "Monsalve" });
+
 
 let nuevoContacto = {
 id: 4, 
@@ -46,7 +60,9 @@ id: 4,
     ubicaciones: { ciudad: "San Pedro de Urabá", dirección: "calle 14 #48-29",}
 }
 
-// agregarContacto(nuevoContacto);
-borrarContacto(3)
-imprimirContacto();
+// agregarContacto (nuevoContacto);
+// borrarContacto("bogota")
+// imprimirContacto();
+
+// console.log(listaContactos);
 
